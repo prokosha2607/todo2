@@ -129,10 +129,10 @@ export default {
   border-radius: 20px;
   box-shadow: inset 0 0 7px rgb(5, 95, 77);
   cursor: pointer;
-}
-.logout:hover {
-  background-color: rgb(127, 211, 155);
-  color: rgb(232, 248, 239);
+  &:hover {
+    background-color: rgb(127, 211, 155);
+    color: rgb(232, 248, 239);
+  }
 }
 .mail-user {
   color: rgb(15, 78, 42);
@@ -149,19 +149,18 @@ export default {
   margin: 20px auto;
   counter-reset: items;
 }
-.container-items::before,
-.container-items::after {
-  content: "";
-  flex-basis: 100%;
-  width: 0;
-  order: 2;
+.container-items {
+  &::before,
+  &::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    order: 2;
+  }
 }
 .svg-plus {
   width: 20px;
-  fill: rgb(158, 162, 163);
-  &:hover {
-    fill: forestgreen;
-  }
+  fill: forestgreen;
 }
 .cont_btn-show_drawer {
   position: absolute;
@@ -180,11 +179,19 @@ export default {
   border-radius: 50%;
   padding: 5px 7px 1px 7px;
   width: 38px;
-  border: 2px solid forestgreen;
   position: fixed;
   bottom: 10%;
   cursor: pointer;
   text-align: center;
+  background: #fff;
+  box-shadow: 0 0 15px rgb(5, 95, 77);
+  border: none;
+  &:hover {
+    box-shadow: 0 0 15px rgb(206, 36, 36);
+    .svg-plus {
+      fill: rgb(212, 25, 25);
+    }
+  }
 }
 .pop_up-delete_task {
   background: rgba(56, 183, 221, 0.842);
@@ -287,18 +294,6 @@ export default {
     padding: 5px;
     width: 100%;
     margin: 5px;
-  }
-  .svg-plus {
-    width: 20px;
-    fill: forestgreen;
-    &:hover {
-      fill: forestgreen;
-    }
-  }
-  .btn-show_drawer {
-    background: #fff;
-    box-shadow: 0 0 15px rgb(5, 95, 77);
-    border: none;
   }
   .btn-show_drawer {
     bottom: 5%;

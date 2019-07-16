@@ -66,6 +66,9 @@ export default new Vuex.Store({
         clearState({ commit }) {
             commit('clearState');
         },
+        removeCurrentTask({ commit }) {
+            commit('removeCurrentTask');
+        }
     },
     mutations: {
         updateMail(state, payload) {
@@ -93,6 +96,9 @@ export default new Vuex.Store({
         },
         clearState(state) {
             state = {};
+        },
+        removeCurrentTask(state) {
+            state.currentTask = {};
         }
     }
 })

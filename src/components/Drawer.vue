@@ -8,7 +8,7 @@
         <textarea class="task-descr" v-model="task.description" :class="{ error : err.isActive}"></textarea>
         <div class="err-msg" v-if="err.isActive">{{err.msg}}</div>
         <button type="submit" class="btn-create_task" @click.prevent="submit">save</button>
-        <button type="submit" class="btn-close_drawer" @click.prevent="closeDrawer">
+        <button class="btn-close_drawer" @click.prevent="closeDrawer">
           <svg aria-hidden="true" focusable="false" class="svg-close_drawer" viewBox="0 0 352 512">
             <path
               d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
@@ -39,14 +39,15 @@ export default {
       mail: "getMail"
     }),
     task() {
-      return this.flagDrawer === "add" ? {} : this.currentTask;
+      return this.flagDrawer === "add" ? {} : Object.assign({}, this.currentTask);
     }
   },
   methods: {
-    ...mapActions(["changeTask", "addTask", "setChangeTask"]),
+    ...mapActions(["changeTask", "addTask",'removeCurrentTask']),
     closeDrawer() {
       this.$emit("update:isActiveDrawer", false);
       this.err.isActive = false;
+      this.removeCurrentTask();
     },
     submit() {
       const data = {
@@ -59,7 +60,7 @@ export default {
         return;
       }
       if (this.flagDrawer === "change") {
-        this.changeTask({ id: this.task["_id"], data: data });
+        this.changeTask({ id: this.task["_id"], data });
       } else {
         this.addTask({ ...author, ...data });
       }
