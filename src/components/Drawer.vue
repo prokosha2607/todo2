@@ -39,7 +39,7 @@ export default {
       mail: "getMail"
     }),
     task() {
-      return this.flagDrawer === "add" ? {} : Object.assign({}, this.currentTask);
+      return this.flagDrawer === "add" ? {} : {...this.currentTask};
     }
   },
   methods: {
